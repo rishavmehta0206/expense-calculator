@@ -7,16 +7,22 @@ const List = () => {
   return (
     <Container>
       <Wrapper>
-        <MainContainer>
-          {list.map((item) => {
-            return (
-              <ItemContainer amount={item.amount}>
-                <ItemText>{item.text}</ItemText>
-                <ItemAmount>{item.amount}</ItemAmount>
-              </ItemContainer>
-            );
-          })}
-        </MainContainer>
+        {list.length > 0 ? (
+          <MainContainer>
+            {list.map((item) => {
+              return (
+                <ItemContainer amount={item.amount}>
+                  <ItemText>{item.text}</ItemText>
+                  <ItemAmount>{item.amount}</ItemAmount>
+                </ItemContainer>
+              );
+            })}
+          </MainContainer>
+        ) : (
+          <MainContainer style={{ textAlign: "center" }}>
+            Tracker is empty.
+          </MainContainer>
+        )}
       </Wrapper>
     </Container>
   );
@@ -50,7 +56,8 @@ const ItemContainer = styled.div`
   height: 20px;
   margin-bottom: 10px;
   padding: 10px;
-  border-right: ${props=>props.amount>0?"5px solid green":"5px solid red"}
+  border-right: ${(props) =>
+    props.amount > 0 ? "5px solid green" : "5px solid red"};
 `;
 const ItemText = styled.div``;
 const ItemAmount = styled.div``;
